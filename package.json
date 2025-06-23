@@ -1,0 +1,83 @@
+{
+	"name": "wext-manifest-transformer",
+	"version": "1.0.0",
+	"description": "Transformer that lets you specify `manifest.json` properties to appear only in specific browsers.",
+	"license": "MIT",
+	"repository": "https://github.com/abhijithvijayan/wext-manifest-transformer.git",
+	"author": {
+		"name": "abhijithvijayan",
+		"email": "email@abhijithvijayan.in",
+		"url": "https://abhijithvijayan.in"
+	},
+	"engines": {
+		"node": ">=10.0.0"
+	},
+	"main": "lib/cjs/index.js",
+	"module": "lib/esm/index.js",
+	"types": "lib/cjs/index.d.ts",
+	"files": [
+		"lib"
+	],
+	"scripts": {
+		"dev": "tsc --module esnext --outDir lib/esm --watch",
+		"dev:cjs": "tsc --module commonjs --outDir lib/cjs --watch",
+		"build:cjs": "tsc --module commonjs --outDir lib/cjs",
+		"build:esm": "tsc --module esnext --outDir lib/esm",
+		"build": "rimraf lib && npm run build:cjs && npm run build:esm",
+		"pack:list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
+		"prepublishOnly": "npm run pack:list",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"lint": "eslint . --ext .ts",
+		"lint:fix": "eslint . --ext .ts --fix"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.ts": [
+			"eslint --ext .ts"
+		]
+	},
+	"keywords": [
+		"webextension",
+		"manifest",
+		"wext",
+		"transformer",
+		"chrome",
+		"firefox",
+		"edge",
+		"brave",
+		"opera",
+		"vivaldi",
+		"arc",
+		"yandex"
+	],
+	"devDependencies": {
+		"@abhijithvijayan/eslint-config": "2.8.1",
+		"@abhijithvijayan/eslint-config-airbnb": "1.1.0",
+		"@abhijithvijayan/tsconfig": "1.3.0",
+		"@babel/eslint-parser": "7.27.5",
+		"@types/jest": "30.0.0",
+		"@types/node": "20.19.1",
+		"@typescript-eslint/eslint-plugin": "8.35.0",
+		"@typescript-eslint/parser": "8.35.0",
+		"eslint": "9.29.0",
+		"eslint-config-prettier": "10.1.5",
+		"eslint-plugin-import": "2.32.0",
+		"eslint-plugin-jsx-a11y": "6.10.2",
+		"eslint-plugin-node": "11.1.0",
+		"eslint-plugin-prettier": "5.5.0",
+		"eslint-plugin-react": "7.37.5",
+		"eslint-plugin-react-hooks": "5.2.0",
+		"husky": "9.1.7",
+		"jest": "30.0.2",
+		"lint-staged": "16.1.2",
+		"prettier": "3.6.0",
+		"rimraf": "6.0.1",
+		"ts-jest": "29.4.0",
+		"typescript": "5.8.3"
+	}
+}
