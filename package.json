@@ -1,6 +1,6 @@
 {
 	"name": "wext-manifest-transformer",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Transformer that lets you specify `manifest.json` properties to appear only in specific browsers.",
 	"license": "MIT",
 	"repository": "https://github.com/abhijithvijayan/wext-manifest-transformer.git",
@@ -58,7 +58,7 @@
 	"devDependencies": {
 		"@abhijithvijayan/eslint-config": "^2.8.0",
 		"@abhijithvijayan/eslint-config-airbnb": "^1.1.0",
-		"@abhijithvijayan/tsconfig": "^1.4.0",
+		"@abhijithvijayan/tsconfig": "^1.4.1",
 		"@babel/eslint-parser": "^7.23.9",
 		"@types/jest": "^26.0.23",
 		"@types/node": "^20.19.1",
