@@ -23,6 +23,5 @@
 				"ignores": ["modules"]
 			}
 		]
-	},
-	"ignorePatterns": ["node_modules", "lib"]
+	}
 }
