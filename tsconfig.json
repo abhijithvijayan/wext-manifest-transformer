@@ -6,7 +6,8 @@
 	  "dom",
 	  "dom.iterable",
 	  "esnext"
-	]
+	],
+	"resolveJsonModule": true
   },
   "include": [
 	"source",

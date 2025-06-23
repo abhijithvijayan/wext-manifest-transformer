@@ -24,9 +24,9 @@ export const transformer = (
 				const vendorMatch: RegExpMatchArray | null =
 					key.match(CUSTOM_PREFIX_REGEX);
 
-				if (vendorMatch) {
+				if (!!vendorMatch) {
 					// match[1] => 'opera|firefox|dev' => ['opera', 'firefox', 'dev']
-					const matches: string[] = vendorMatch[1].split("|");
+					const matches: string[] = vendorMatch[1]?.split("|") || [];
 					const isProd: boolean = nodeEnv === "production";
 
 					const hasCurrentVendor = matches.includes(selectedVendor);
@@ -59,11 +59,8 @@ export const transformer = (
 					) {
 						// Swap key with non prefixed name
 						// match[2] => will be the key
-						newManifest[vendorMatch[2]] = transformer(
-							value,
-							selectedVendor,
-							nodeEnv,
-						);
+						newManifest[(vendorMatch as RegExpMatchArray)[2] as string] =
+							transformer(value, selectedVendor, nodeEnv);
 					}
 				} else {
 					newManifest[key] = transformer(value, selectedVendor, nodeEnv);
