@@ -4,9 +4,6 @@
   <a href="https://www.npmjs.com/package/wext-manifest-transformer">
     <img src="https://img.shields.io/npm/v/wext-manifest-transformer" alt="NPM" />
   </a>
-  <a href="https://david-dm.org/abhijithvijayan/wext-manifest-transformer">
-    <img src="https://img.shields.io/david/abhijithvijayan/wext-manifest-transformer.svg?colorB=orange" alt="DEPENDENCIES" />
-  </a>
   <a href="https://github.com/abhijithvijayan/wext-manifest-transformer/blob/main/license">
     <img src="https://img.shields.io/github/license/abhijithvijayan/wext-manifest-transformer.svg" alt="LICENSE" />
   </a>
