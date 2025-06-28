@@ -1,4 +1,4 @@
-import { transformer } from "./transform";
+import { transformer } from "./transform.js";
 
 export {
 	browserVendors,
@@ -6,10 +6,8 @@ export {
 	Browser,
 	CUSTOM_PREFIX_REGEX,
 	ENVKeys,
-} from "./constants";
-export type { BrowserType } from "./constants";
-export default transformer;
+} from "./constants.js";
 
-// For CommonJS default export support
-module.exports = transformer;
-module.exports.default = transformer;
+export type { BrowserType } from "./constants.js";
+
+export default transformer;

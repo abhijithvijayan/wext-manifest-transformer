@@ -4,7 +4,7 @@ import {
 	envVariables,
 	BrowserType,
 	ENVKeys,
-} from "./constants";
+} from "./constants.js";
 
 export const transformer = (
 	manifest: Record<string, string> | string | number | unknown,

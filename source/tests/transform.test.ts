@@ -1,8 +1,8 @@
 import manifest from "./manifest.json";
 import chromeOutput from "./chrome.json";
 import firefoxOutput from "./firefox.json";
-import { transformer } from "../transform";
-import { Browser } from "../constants";
+import { transformer } from "../transform.js";
+import { Browser } from "../constants.js";
 
 describe("transformer tests", () => {
 	it("should return empty object", () => {
