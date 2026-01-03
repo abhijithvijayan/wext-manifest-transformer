@@ -24,7 +24,7 @@ export const transformer = (
 				const vendorMatch: RegExpMatchArray | null =
 					key.match(CUSTOM_PREFIX_REGEX);
 
-				if (!!vendorMatch) {
+				if (vendorMatch) {
 					// match[1] => 'opera|firefox|dev' => ['opera', 'firefox', 'dev']
 					const matches: string[] = vendorMatch[1]?.split("|") || [];
 					const isProd: boolean = nodeEnv === "production";
