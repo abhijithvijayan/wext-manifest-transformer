@@ -1,107 +1,107 @@
-import manifest from "./manifest.json";
-import chromeOutput from "./chrome.json";
-import firefoxOutput from "./firefox.json";
-import { transformer } from "../transform.js";
-import { Browser } from "../constants.js";
+import manifest from './manifest.json';
+import chromeOutput from './chrome.json';
+import firefoxOutput from './firefox.json';
+import {transformer} from '../transform.js';
+import {Browser} from '../constants.js';
 
-describe("transformer tests", () => {
-	it("should return empty object", () => {
-		expect(transformer({}, "chrome", "development")).toEqual({});
-	});
+describe('transformer tests', () => {
+  it('should return empty object', () => {
+    expect(transformer({}, 'chrome', 'development')).toEqual({});
+  });
 
-	it("should return correct JSON for JSON without vendor prefixes", () => {
-		expect(
-			transformer(
-				JSON.parse(`
+  it('should return correct JSON for JSON without vendor prefixes', () => {
+    expect(
+      transformer(
+        JSON.parse(`
 			{
 			  "name": "test",
 			  "manifest_version": 2
 			}
         `),
-				Browser.CHROME,
-				"development",
-			),
-		).toEqual(
-			JSON.parse(`
+        Browser.CHROME,
+        'development'
+      )
+    ).toEqual(
+      JSON.parse(`
 			{
 			  "name": "test",
 			  "manifest_version": 2
 			}
-      `),
-		);
-	});
+      `)
+    );
+  });
 });
 
-describe("ENV Tests", () => {
-	it("should return correct JSON for development", () => {
-		expect(
-			transformer(
-				JSON.parse(`
+describe('ENV Tests', () => {
+  it('should return correct JSON for development', () => {
+    expect(
+      transformer(
+        JSON.parse(`
 			{
 			  "__dev__content_security_policy": "script-src 'self' http://localhost:8097; object-src 'self'",
 			  "__prod__content_security_policy": "script-src 'self'; object-src 'self'"
 			}
         `),
-				Browser.CHROME,
-				"development",
-			),
-		).toEqual(
-			JSON.parse(`
+        Browser.CHROME,
+        'development'
+      )
+    ).toEqual(
+      JSON.parse(`
 			{
 			  "content_security_policy": "script-src 'self' http://localhost:8097; object-src 'self'"
 			}
-      `),
-		);
-	});
+      `)
+    );
+  });
 
-	it("should return correct JSON for production", () => {
-		expect(
-			transformer(
-				JSON.parse(`
+  it('should return correct JSON for production', () => {
+    expect(
+      transformer(
+        JSON.parse(`
 			{
 			  "__dev__content_security_policy": "script-src 'self' http://localhost:8097; object-src 'self'",
 			  "__prod__content_security_policy": "script-src 'self'; object-src 'self'"
 			}
         `),
-				Browser.CHROME,
-				"production",
-			),
-		).toEqual(
-			JSON.parse(`
+        Browser.CHROME,
+        'production'
+      )
+    ).toEqual(
+      JSON.parse(`
 			{
 			  "content_security_policy": "script-src 'self'; object-src 'self'"
 			}
-      `),
-		);
-	});
+      `)
+    );
+  });
 });
 
-describe("chrome tests", () => {
-	it("should return correct JSON for chrome", () => {
-		expect(
-			transformer(
-				JSON.parse(`
+describe('chrome tests', () => {
+  it('should return correct JSON for chrome', () => {
+    expect(
+      transformer(
+        JSON.parse(`
 			{
 			  "__chrome|opera|edge__manifest_version": 3,
 			  "__firefox__manifest_version": 2
 			}
         `),
-				Browser.CHROME,
-				"development",
-			),
-		).toEqual(
-			JSON.parse(`
+        Browser.CHROME,
+        'development'
+      )
+    ).toEqual(
+      JSON.parse(`
 			{
 			  "manifest_version": 3
 			}
-      `),
-		);
-	});
+      `)
+    );
+  });
 
-	it("nested vendor keys", () => {
-		expect(
-			transformer(
-				JSON.parse(`
+  it('nested vendor keys', () => {
+    expect(
+      transformer(
+        JSON.parse(`
 			{
 			 "options_ui": {
 				"page": "options.html",
@@ -111,11 +111,11 @@ describe("chrome tests", () => {
 			  }
 			}
         `),
-				Browser.CHROME,
-				"development",
-			),
-		).toEqual(
-			JSON.parse(`
+        Browser.CHROME,
+        'development'
+      )
+    ).toEqual(
+      JSON.parse(`
 			{
 			 "options_ui": {
 				"page": "options.html",
@@ -123,43 +123,43 @@ describe("chrome tests", () => {
 				"chrome_style": false
 			  }
 			}
-      `),
-		);
-	});
+      `)
+    );
+  });
 
-	it("should transform whole JSON", () => {
-		expect(
-			transformer(manifest as never, Browser.CHROME, "development"),
-		).toEqual(chromeOutput);
-	});
+  it('should transform whole JSON', () => {
+    expect(
+      transformer(manifest as never, Browser.CHROME, 'development')
+    ).toEqual(chromeOutput);
+  });
 });
 
-describe("firefox tests", () => {
-	it("should return correct JSON for firefox", () => {
-		expect(
-			transformer(
-				JSON.parse(`
+describe('firefox tests', () => {
+  it('should return correct JSON for firefox', () => {
+    expect(
+      transformer(
+        JSON.parse(`
 			{
 			  "__chrome|opera|edge__manifest_version": 3,
 			  "__firefox__manifest_version": 2
 			}
         `),
-				Browser.FIREFOX,
-				"development",
-			),
-		).toEqual(
-			JSON.parse(`
+        Browser.FIREFOX,
+        'development'
+      )
+    ).toEqual(
+      JSON.parse(`
 			{
 			  "manifest_version": 2
 			}
-      `),
-		);
-	});
+      `)
+    );
+  });
 
-	it("nested vendor keys", () => {
-		expect(
-			transformer(
-				JSON.parse(`
+  it('nested vendor keys', () => {
+    expect(
+      transformer(
+        JSON.parse(`
 			{
 			 "options_ui": {
 				"page": "options.html",
@@ -169,11 +169,11 @@ describe("firefox tests", () => {
 			  }
 			}
         `),
-				Browser.FIREFOX,
-				"development",
-			),
-		).toEqual(
-			JSON.parse(`
+        Browser.FIREFOX,
+        'development'
+      )
+    ).toEqual(
+      JSON.parse(`
 			{
 			 "options_ui": {
 				"page": "options.html",
@@ -181,13 +181,13 @@ describe("firefox tests", () => {
 				"browser_style": false
 			  }
 			}
-      `),
-		);
-	});
+      `)
+    );
+  });
 
-	it("should transform whole JSON", () => {
-		expect(
-			transformer(manifest as never, Browser.FIREFOX, "development"),
-		).toEqual(firefoxOutput);
-	});
+  it('should transform whole JSON', () => {
+    expect(
+      transformer(manifest as never, Browser.FIREFOX, 'development')
+    ).toEqual(firefoxOutput);
+  });
 });
